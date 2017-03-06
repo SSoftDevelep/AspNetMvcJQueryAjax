@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<button id="btnLoad" type="button" class="btn btn-success">Verileri Yükle</button>
+<br /> <br />
+<input id="txtData" type=text" class="form-control" placeholder="Veri Giriniz.." style="width:200px;" />
+<button id="btnLoad2" type="button" class="btn btn-success">Verileri Gönder &amp; Yükle</button>
+<hr />
+
+<div id="loading" class="alert alert-warning" style="display:none"> Yükleniyor...</div>
+
+
+<ul id="list" class="list-group"></ul>
+
+<script>
+    $(function () {
+
+        //fonksiyonlari ic ice yazdik. Cunku jquery fonksiyonlari sirasiyla calistirmaz ayni anda calistirir.
+        $("#btnLoad").click(function () {
+
+            $("#loading").show(300, function () {
+
+                $.get("/Home/VerileriGetir", function (d) {   //ilk parametre get istegi yapilacak adres. Cekilen adresteki data d'ye aktarilir.
+                    $("#list").html(d);
+                    $("#loading").hide(300); //300milisaniye
+                });
+
+            });
+
+        });
+
+
+
+
+        //fonksiyonlari ic ice yazdik. Cunku jquery fonksiyonlari sirasiyla calistirmaz ayni anda calistirir.
+        $("#btnLoad2").click(function () {
+
+            $("#loading").show(300, function () {
+
+                var data = $("#txtData").val();
+
+                $.get("/Home/VerileriGetir", { veri: data }, function (d) {   //ilk parametre get istegi yapilacak adres. Cekilen adresteki data d'ye aktarilir.
+                    $("#list").html(d);
+                    $("#loading").hide(300); //300milisaniye
+                });
+            });
+
+        })
+    });
+
+</script>
