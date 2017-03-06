@@ -26,7 +26,10 @@
 
                 $.get("/Home/VerileriGetir", function (d) {   //ilk parametre get istegi yapilacak adres. Cekilen adresteki data d'ye aktarilir.
                     $("#list").html(d);
-                    $("#loading").hide(300); //300milisaniye
+                }).fail(function () {   //hata alinirsa calisir.
+                    alert("Hata olustu");
+                }).always(function () {
+                    $("#loading").hide(300); //300milisaniye.  Basarili da olunsa hata da alinsa calisir.
                 });
 
             });
@@ -45,7 +48,11 @@
 
                 $.get("/Home/VerileriGetir", { veri: data }, function (d) {   //ilk parametre get istegi yapilacak adres. Cekilen adresteki data d'ye aktarilir.
                     $("#list").html(d);
-                    $("#loading").hide(300); //300milisaniye
+                    
+                }).fail(function () {   //hata alinirsa calisir.
+                    alert("Hata olustu");
+                }).always(function () {
+                    $("#loading").hide(300); //300milisaniye.  Basarili da olunsa hata da alinsa calisir.
                 });
             });
 
