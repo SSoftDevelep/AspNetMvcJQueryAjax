@@ -27,6 +27,11 @@ namespace AspNetMvcJQueryAjax.Controllers
             return View();
         }
 
+        public ActionResult Index4()
+        {
+            return View();
+        }
+
         public PartialViewResult VerileriGetir(string veri = "")
 
         {
@@ -38,6 +43,17 @@ namespace AspNetMvcJQueryAjax.Controllers
             //veriler db'den cekilir.
             System.Threading.Thread.Sleep(3000);  //3 sn beklettik.
             return PartialView("_DataItemPartial", listem);
+        }
+
+        public JsonResult VerileriGetir2(string veri = "")
+        {
+            if (string.IsNullOrEmpty(veri) == false)   //bosluk yada bos degilse
+            {
+                listem.Add(veri);
+            }
+
+            System.Threading.Thread.Sleep(3000);
+            return Json(listem,JsonRequestBehavior.AllowGet);  //bilincli olarak datayi disariya aciyorum demek. Bunu yapmazsak get talebiyle action sonucunu json olarak alamayiz.
         }
 
         //public PartialViewResult VerileriGetir(string veri)
